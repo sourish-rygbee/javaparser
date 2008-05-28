@@ -20,3 +20,9 @@ try {
 // prints the resulting compilation unit to default system output
 System.out.println(cu.toString());
 }}}
+
+== Visiting class methods ==
+
+{{{
+// TODO: write an example
+}}}
