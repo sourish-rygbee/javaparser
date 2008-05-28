@@ -1,8 +1,22 @@
 #summary How to use this Java Parser
+#labels Featured,Help
 
-== Sample usage ==
+= Sample Usage =
+
+== Printing the CompilationUnit to System output ==
 
 {{{
-CompilationUnit cu = JavaParser.parse(new FileInputStream("test.java"));
+// creates an input stream for the file to be parsed
+FileInputStream in = new new FileInputStream("test.java");
+
+CompilationUnit cu;
+try {
+    // parse the file
+    cu = JavaParser.parse();
+} finally {
+    in.close(in);
+}
+
+// prints the resulting compilation unit to default system output
 System.out.println(cu.toString());
 }}}
