@@ -6,23 +6,53 @@
 == Printing the CompilationUnit to System output ==
 
 {{{
-// creates an input stream for the file to be parsed
-FileInputStream in = new new FileInputStream("test.java");
+public static void main(String[] args) throws Exception {
+    // creates an input stream for the file to be parsed
+    FileInputStream in = new FileInputStream("test.java");
 
-CompilationUnit cu;
-try {
-    // parse the file
-    cu = JavaParser.parse();
-} finally {
-    in.close(in);
+    CompilationUnit cu;
+    try {
+        // parse the file
+        cu = JavaParser.parse(in);
+    } finally {
+        in.close();
+    }
+
+    // prints the resulting compilation unit to default system output
+    System.out.println(cu.toString());
 }
-
-// prints the resulting compilation unit to default system output
-System.out.println(cu.toString());
 }}}
 
 == Visiting class methods ==
 
 {{{
-// TODO: write an example
+public class MethodPrinter {
+
+    public static void main(String[] args) throws Exception {
+        // creates an input stream for the file to be parsed
+        FileInputStream in = new FileInputStream("test.java");
+
+        CompilationUnit cu;
+        try {
+            // parse the file
+            cu = JavaParser.parse(in);
+        } finally {
+            in.close();
+        }
+
+        // visit and print the methods names
+        new MethodVisitor().visit(cu, null);
+    }
+
+    /**
+     * Simple visitor implementation for visiting MethodDeclaration nodes. 
+     */
+    private static class MethodVisitor extends VoidVisitorAdapter {
+
+        @Override
+        public void visit(MethodDeclaration n, Object arg) {
+            System.out.println(n.getName());
+        }
+    }
+}
 }}}
