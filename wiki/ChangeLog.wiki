@@ -1,4 +1,6 @@
+#summary History of Changes
 #labels Featured
+
 *2008-06-09*
   * Added Adapters for de visitors
 
