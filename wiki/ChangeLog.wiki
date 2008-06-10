@@ -3,6 +3,8 @@
 
 *2008-06-09*
   * Added Adapters for de visitors
+    * japa.parser.ast.visitor.GenericVisitorAdapter
+    * japa.parser.ast.visitor.VoidVisitorAdapter
 
 *2008-05-28*
   * This project now is published at Google Code:
