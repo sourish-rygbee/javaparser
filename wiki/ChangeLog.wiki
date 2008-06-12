@@ -2,7 +2,7 @@
 #labels Featured
 
 *2008-06-11*
-  * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=2 Issue 2]
+  * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=2 Issue 2] NPE in VoidVisitorAdapter
 
 *2008-06-09*
   * Added Adapters for de visitors
