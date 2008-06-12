@@ -1,6 +1,9 @@
 #summary History of Changes
 #labels Featured
 
+*2008-06-11*
+  * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=2 Issue 2]
+
 *2008-06-09*
   * Added Adapters for de visitors
     * japa.parser.ast.visitor.GenericVisitorAdapter
