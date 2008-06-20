@@ -1,6 +1,9 @@
 #summary History of Changes
 #labels Featured
 
+*2008-06-19*
+  * No code changes, added binary distribution to download page
+
 *2008-06-11*
   * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=2 Issue 2] NPE in `VoidVisitorAdapter`
 
