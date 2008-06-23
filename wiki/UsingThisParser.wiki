@@ -3,7 +3,7 @@
 
 = Sample Usage =
 
-== Printing the CompilationUnit to System output ==
+== Printing the `CompilationUnit` to System output ==
 
 {{{
 public class CuPrinter {
