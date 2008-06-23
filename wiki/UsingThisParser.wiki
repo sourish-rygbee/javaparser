@@ -3,6 +3,8 @@
 
 = Sample Usage =
 
+If you have questions of how to use this parser, post a comment here, the answer can help other people.
+
 == Printing the `CompilationUnit` to System output ==
 
 {{{
@@ -53,6 +55,9 @@ public class MethodPrinter {
 
         @Override
         public void visit(MethodDeclaration n, Object arg) {
+            // here you can access the method attributes.
+            // this method will be called for all methods in this 
+            // CompilationUnit, including inner class methods
             System.out.println(n.getName());
         }
     }
