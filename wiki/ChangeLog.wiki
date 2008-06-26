@@ -1,6 +1,13 @@
 #summary History of Changes
 #labels Featured
 
+*1.0.0 - 2008-06-25*
+- Changed version numbering, starting version 1.0.0
+- Javadoc packages japa.parser and japa.parser.ast
+- Corrected bug when parsing in multithread: 
+    - JavaParser.setCacheParser(false) must be called before to use the parser concurrent 
+
+
 *2008-06-19*
   * No code changes, added binary distribution to download page
 
