@@ -1,7 +1,7 @@
 #summary History of Changes
 #labels Featured
 
-*1.0.0 - 2008-06-25*
+*1.0.0* (_2008-06-25_)
   * Changed version numbering, starting version 1.0.0
   * Javadoc done for packages:
     * japa.parser
