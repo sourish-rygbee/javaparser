@@ -2,7 +2,7 @@
 #labels Featured
 
 *1.0.1* (_2008-07-01_)
-  * Issue fixed: Issue 5: [http://code.google.com/p/javaparser/issues/detail?id=5 Issue 5] end line and end column equal to begin line and begin column
+  * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=5 Issue 5:] end line and end column equal to begin line and begin column
 
 *1.0.0* (_2008-06-25_)
   * Changed version numbering, starting version 1.0.0
