@@ -1,6 +1,9 @@
 #summary History of Changes
 #labels Featured
 
+*1.0.2* (_2008-07-20_)
+  * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=1 Issue 1]: Add support for editing AST nodes or create new ones
+
 *1.0.1* (_2008-07-01_)
   * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=5 Issue 5]: end line and end column equal to begin line and begin column
 
