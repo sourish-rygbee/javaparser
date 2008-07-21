@@ -64,7 +64,7 @@ public class MethodPrinter {
 }
 }}}
 
-== Creating a CompilationUnit from scratch ==
+== Creating a `CompilationUnit`from scratch ==
 {{{
 	// TODO:
 }}}
