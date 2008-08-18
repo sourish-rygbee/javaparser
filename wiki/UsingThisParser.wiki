@@ -55,7 +55,7 @@ public class MethodPrinter {
 
         @Override
         public void visit(MethodDeclaration n, Object arg) {
-            // here you can access the method attributes.
+            // here you can access the attributes of the method.
             // this method will be called for all methods in this 
             // CompilationUnit, including inner class methods
             System.out.println(n.getName());
