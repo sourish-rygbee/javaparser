@@ -1,6 +1,12 @@
 #summary History of Changes
 #labels Featured
 
+*1.0.3* (_2008-09-06_)
+  * Removed `SuperMemberAccessExpr` class, it was no longer used
+  * Removed the methods `get/setTypeArgs()` from `ArrayCreationExpr`, this node shouldn't have these methods.
+  * Fixed the bug with start/end position of the nodes `IntegerLiteralMinValueExpr` and `LongLiteralMinValueExpr`  
+  * The methods `get/setAnnotations()` from all `BodyDeclaration` subclasses were pushed down to `BodyDeclaration` class
+
 *1.0.2* (_2008-07-20_)
   * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=1 Issue 1]: Add support for editing AST nodes or create new ones
 
