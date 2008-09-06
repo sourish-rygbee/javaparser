@@ -1,4 +1,4 @@
-#summary FAQ
+#summary Frequent asked questions
 #labels Featured
 
 = Frequent asked questions =
