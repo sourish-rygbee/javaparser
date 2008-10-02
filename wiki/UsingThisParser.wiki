@@ -81,7 +81,7 @@ public class MethodChanger {
 			in.close();
 		}
 
-		// visit and change the methods names
+		// visit and change the methods names and parameters
 		new MethodChangerVisitor().visit(cu, null);
 
 		// prints the changed compilation
@@ -128,6 +128,68 @@ public class MethodChanger {
 == Changing methods from a class methods with visitor ==
 
 {{{
+public class MethodChanger {
+
+	public static void main(String[] args) throws Exception {
+		// creates an input stream for the file to be parsed
+		FileInputStream in = new FileInputStream("test.java");
+
+		CompilationUnit cu;
+		try {
+			// parse the file
+			cu = JavaParser.parse(in);
+		} finally {
+			in.close();
+		}
+
+		// change the methods names and parameters
+		changeMethods(cu);
+
+		// prints the changed compilation
+		System.out.println(cu.toString());
+	}
+
+	private static void changeMethods(CompilationUnit cu) {
+		List<TypeDeclaration> types = cu.getTypes();
+		for (TypeDeclaration type : types) {
+			List<BodyDeclaration> members = type.getMembers();
+			for (BodyDeclaration member : members) {
+				if (member instanceof MethodDeclaration) {
+					MethodDeclaration method = (MethodDeclaration) member;
+					changeMethod(method);
+				}
+			}
+		}
+	}
+
+	private static void changeMethod(MethodDeclaration n) {
+		// change the name of the method to upper case
+		n.setName(n.getName().toUpperCase());
+
+		// add a new parameter to the method (int value)
+		List<Parameter> parameters = n.getParameters();
+		if (parameters == null) {
+			parameters = new ArrayList<Parameter>(1);
+			n.setParameters(parameters);
+		}
+		Parameter newArg = createArg(Primitive.Int, "value");
+		parameters.add(newArg);
+	}
+
+	/**
+	 * create and return a parameter with primitive type
+	 */
+	private static Parameter createArg(Primitive type, String name) {
+		Parameter ret = new Parameter();
+		VariableDeclaratorId id = new VariableDeclaratorId();
+		id.setName(name);
+		ret.setId(id);
+		PrimitiveType pt = new PrimitiveType();
+		pt.setType(type);
+		ret.setType(pt);
+		return ret;
+	}
+}
 }}}
 
 == Creating a `CompilationUnit`from scratch ==
