@@ -64,52 +64,53 @@ public class MethodPrinter {
 }
 }}}
 
-== Changing methods from a class methods ==
+== Changing methods from a class methods with visitor ==
+
 {{{
 public class MethodChanger {
 
-    public static void main(String[] args) throws Exception {
-        // creates an input stream for the file to be parsed
-        FileInputStream in = new FileInputStream("test.java");
+	public static void main(String[] args) throws Exception {
+		// creates an input stream for the file to be parsed
+		FileInputStream in = new FileInputStream("test.java");
 
-        CompilationUnit cu;
-        try {
-            // parse the file
-            cu = JavaParser.parse(in);
-        } finally {
-            in.close();
-        }
-        
-        // visit and change the methods names
-        new MethodChangerVisitor().visit(cu, null);
-        
-        // prints the changed compilation 
-        System.out.println(cu.toString());
-    }
+		CompilationUnit cu;
+		try {
+			// parse the file
+			cu = JavaParser.parse(in);
+		} finally {
+			in.close();
+		}
 
-    /**
-     * Simple visitor implementation for visiting MethodDeclaration nodes. 
-     */
-    private static class MethodChangerVisitor extends VoidVisitorAdapter {
+		// visit and change the methods names
+		new MethodChangerVisitor().visit(cu, null);
 
-        @Override
-        public void visit(MethodDeclaration n, Object arg) {
-        	// change the name of the method to upper case
-        	n.setName(n.getName().toUpperCase());
-        	
-        	// add a new parameter to the method (int value)
-        	List<Parameter> parameters = n.getParameters();
-        	if(parameters==null){
-        		parameters = new ArrayList<Parameter>(1);
-        		n.setParameters(parameters);
-        	}
-        	Parameter newArg = createArg(Primitive.Int, "value");
-        	parameters.add(newArg);
-        }
+		// prints the changed compilation
+		System.out.println(cu.toString());
+	}
 
-        /**
-         * create and return a parameter with primitive type
-         */
+	/**
+	 * Simple visitor implementation for visiting MethodDeclaration nodes.
+	 */
+	private static class MethodChangerVisitor extends VoidVisitorAdapter {
+
+		@Override
+		public void visit(MethodDeclaration n, Object arg) {
+			// change the name of the method to upper case
+			n.setName(n.getName().toUpperCase());
+
+			// add a new parameter to the method (int value)
+			List<Parameter> parameters = n.getParameters();
+			if (parameters == null) {
+				parameters = new ArrayList<Parameter>(1);
+				n.setParameters(parameters);
+			}
+			Parameter newArg = createArg(Primitive.Int, "value");
+			parameters.add(newArg);
+		}
+
+		/**
+		 * create and return a parameter with primitive type
+		 */
 		private Parameter createArg(Primitive type, String name) {
 			Parameter ret = new Parameter();
 			VariableDeclaratorId id = new VariableDeclaratorId();
@@ -120,12 +121,17 @@ public class MethodChanger {
 			ret.setType(pt);
 			return ret;
 		}
-    }
+	}
 }
 }}}
 
+== Changing methods from a class methods with visitor ==
+
+{{{
+}}}
 
 == Creating a `CompilationUnit`from scratch ==
+
 {{{
 	// TODO:
 }}}
