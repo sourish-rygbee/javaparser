@@ -125,7 +125,7 @@ public class MethodChanger {
 }
 }}}
 
-== Changing methods from a class methods with visitor ==
+== Changing methods from a class methods without visitor ==
 
 {{{
 public class MethodChanger {
