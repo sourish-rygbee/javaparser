@@ -5,7 +5,7 @@
 
 If you have questions of how to use this parser, post a comment here, the answer can help other people.
 
-== Printing the `CompilationUnit` to System output ==
+== Printing the !CompilationUnit to System output ==
 
 {{{
 public class CuPrinter {
@@ -192,7 +192,7 @@ public class MethodChanger {
 }
 }}}
 
-== Creating a `CompilationUnit`from scratch ==
+== Creating a !CompilationUnit from scratch ==
 
 {{{
 	// TODO:
