@@ -1,6 +1,10 @@
 #summary History of Changes
 #labels Featured
 
+*1.0.4* (_2008-10-07_)
+  * Moved to javacc 4.1. ([http://code.google.com/p/javaparser/issues/detail?id=10 Issue 10])
+  * The java_1_5.jj can be build alone without compilation errors
+
 *1.0.3* (_2008-09-06_)
   * Removed `SuperMemberAccessExpr` class, it was no longer used
   * Removed the methods `get/setTypeArgs()` from `ArrayCreationExpr`, this node shouldn't have these methods.
