@@ -69,59 +69,43 @@ public class MethodPrinter {
 {{{
 public class MethodChanger {
 
-	public static void main(String[] args) throws Exception {
-		// creates an input stream for the file to be parsed
-		FileInputStream in = new FileInputStream("test.java");
+    public static void main(String[] args) throws Exception {
+        // creates an input stream for the file to be parsed
+        FileInputStream in = new FileInputStream("test.java");
 
-		CompilationUnit cu;
-		try {
-			// parse the file
-			cu = JavaParser.parse(in);
-		} finally {
-			in.close();
-		}
+        CompilationUnit cu;
+        try {
+            // parse the file
+            cu = JavaParser.parse(in);
+        } finally {
+            in.close();
+        }
 
-		// visit and change the methods names and parameters
-		new MethodChangerVisitor().visit(cu, null);
+        // visit and change the methods names and parameters
+        new MethodChangerVisitor().visit(cu, null);
 
-		// prints the changed compilation
-		System.out.println(cu.toString());
-	}
+        // prints the changed compilation unit
+        System.out.println(cu.toString());
+    }
 
-	/**
-	 * Simple visitor implementation for visiting MethodDeclaration nodes.
-	 */
-	private static class MethodChangerVisitor extends VoidVisitorAdapter {
+    /**
+     * Simple visitor implementation for visiting MethodDeclaration nodes.
+     */
+    private static class MethodChangerVisitor extends VoidVisitorAdapter {
 
-		@Override
-		public void visit(MethodDeclaration n, Object arg) {
-			// change the name of the method to upper case
-			n.setName(n.getName().toUpperCase());
+        @Override
+        public void visit(MethodDeclaration n, Object arg) {
+            // change the name of the method to upper case
+            n.setName(n.getName().toUpperCase());
 
-			// add a new parameter to the method (int value)
-			List<Parameter> parameters = n.getParameters();
-			if (parameters == null) {
-				parameters = new ArrayList<Parameter>(1);
-				n.setParameters(parameters);
-			}
-			Parameter newArg = createArg(Primitive.Int, "value");
-			parameters.add(newArg);
-		}
+            // create the new parameter
+            Parameter newArg = ASTHelper.createParameter(ASTHelper.INT_TYPE, "value");
 
-		/**
-		 * create and return a parameter with primitive type
-		 */
-		private Parameter createArg(Primitive type, String name) {
-			Parameter ret = new Parameter();
-			VariableDeclaratorId id = new VariableDeclaratorId();
-			id.setName(name);
-			ret.setId(id);
-			PrimitiveType pt = new PrimitiveType();
-			pt.setType(type);
-			ret.setType(pt);
-			return ret;
-		}
-	}
+            // add the parameter to the method
+            ASTHelper.addParameter(n, newArg);
+        }
+
+    }
 }
 }}}
 
@@ -130,70 +114,98 @@ public class MethodChanger {
 {{{
 public class MethodChanger {
 
-	public static void main(String[] args) throws Exception {
-		// creates an input stream for the file to be parsed
-		FileInputStream in = new FileInputStream("test.java");
+    public static void main(String[] args) throws Exception {
+        // creates an input stream for the file to be parsed
+        FileInputStream in = new FileInputStream("test.java");
 
-		CompilationUnit cu;
-		try {
-			// parse the file
-			cu = JavaParser.parse(in);
-		} finally {
-			in.close();
-		}
+        CompilationUnit cu;
+        try {
+            // parse the file
+            cu = JavaParser.parse(in);
+        } finally {
+            in.close();
+        }
 
-		// change the methods names and parameters
-		changeMethods(cu);
+        // change the methods names and parameters
+        changeMethods(cu);
 
-		// prints the changed compilation
-		System.out.println(cu.toString());
-	}
+        // prints the changed compilation unit
+        System.out.println(cu.toString());
+    }
 
-	private static void changeMethods(CompilationUnit cu) {
-		List<TypeDeclaration> types = cu.getTypes();
-		for (TypeDeclaration type : types) {
-			List<BodyDeclaration> members = type.getMembers();
-			for (BodyDeclaration member : members) {
-				if (member instanceof MethodDeclaration) {
-					MethodDeclaration method = (MethodDeclaration) member;
-					changeMethod(method);
-				}
-			}
-		}
-	}
+    private static void changeMethods(CompilationUnit cu) {
+        List<TypeDeclaration> types = cu.getTypes();
+        for (TypeDeclaration type : types) {
+            List<BodyDeclaration> members = type.getMembers();
+            for (BodyDeclaration member : members) {
+                if (member instanceof MethodDeclaration) {
+                    MethodDeclaration method = (MethodDeclaration) member;
+                    changeMethod(method);
+                }
+            }
+        }
+    }
 
-	private static void changeMethod(MethodDeclaration n) {
-		// change the name of the method to upper case
-		n.setName(n.getName().toUpperCase());
+    private static void changeMethod(MethodDeclaration n) {
+        // change the name of the method to upper case
+        n.setName(n.getName().toUpperCase());
 
-		// add a new parameter to the method (int value)
-		List<Parameter> parameters = n.getParameters();
-		if (parameters == null) {
-			parameters = new ArrayList<Parameter>(1);
-			n.setParameters(parameters);
-		}
-		Parameter newArg = createArg(Primitive.Int, "value");
-		parameters.add(newArg);
-	}
+        // create the new parameter
+        Parameter newArg = ASTHelper.createParameter(ASTHelper.INT_TYPE, "value");
 
-	/**
-	 * create and return a parameter with primitive type
-	 */
-	private static Parameter createArg(Primitive type, String name) {
-		Parameter ret = new Parameter();
-		VariableDeclaratorId id = new VariableDeclaratorId();
-		id.setName(name);
-		ret.setId(id);
-		PrimitiveType pt = new PrimitiveType();
-		pt.setType(type);
-		ret.setType(pt);
-		return ret;
-	}
+        // add the parameter to the method
+        ASTHelper.addParameter(n, newArg);
+    }
 }
 }}}
 
 == Creating a !CompilationUnit from scratch ==
 
 {{{
-	// TODO:
+public class ClassCreator {
+
+    public static void main(String[] args) throws Exception {
+        // creates the compilation unit
+        CompilationUnit cu = createCU();
+
+        // prints the created compilation unit
+        System.out.println(cu.toString());
+    }
+
+    /**
+     * creates the compilation unit
+     */
+    private static CompilationUnit createCU() {
+        CompilationUnit cu = new CompilationUnit();
+        // set the package
+        cu.setPakage(new PackageDeclaration(ASTHelper.createNameExpr("java.parser.test")));
+
+        // create the type declaration 
+        ClassOrInterfaceDeclaration type = new ClassOrInterfaceDeclaration(ModifierSet.PUBLIC, false, "GeneratedClass");
+        ASTHelper.addTypeDeclaration(cu, type);
+
+        // create a method
+        MethodDeclaration method = new MethodDeclaration(ModifierSet.PUBLIC, ASTHelper.VOID_TYPE, "main");
+        method.setModifiers(ModifierSet.addModifier(method.getModifiers(), ModifierSet.STATIC));
+        ASTHelper.addMember(type, method);
+
+        // add a parameter to the method
+        Parameter param = ASTHelper.createParameter(ASTHelper.createReferenceType("String", 0), "args");
+        param.setVarArgs(true);
+        ASTHelper.addParameter(method, param);
+
+        // add a body to the method
+        BlockStmt block = new BlockStmt();
+        method.setBody(block);
+
+        // add a statement do the method body
+        NameExpr clazz = new NameExpr("System");
+        FieldAccessExpr field = new FieldAccessExpr(clazz, "out");
+        MethodCallExpr call = new MethodCallExpr(field, "println");
+        ASTHelper.addArgument(call, new StringLiteralExpr("Hello World!"));
+        ASTHelper.addStmt(block, call);
+
+        return cu;
+    }
+}
 }}}
