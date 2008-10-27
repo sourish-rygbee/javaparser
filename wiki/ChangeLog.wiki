@@ -1,6 +1,10 @@
 #summary History of Changes
 #labels Featured
 
+*1.0.5* (_2008-10-26_)
+  * Created simplified constructors in the nodes of the AST (without positional arguments) 
+  * Created `ASTHelper` class with some helpful methods (more methods are still needed) (See UsingThisParser for an example)
+
 *1.0.4* (_2008-10-07_)
   * Moved to javacc 4.1. ([http://code.google.com/p/javaparser/issues/detail?id=10 Issue 10])
   * The java_1_5.jj can be build alone without compilation errors
