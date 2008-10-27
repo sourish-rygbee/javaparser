@@ -64,7 +64,7 @@ public class MethodPrinter {
 }
 }}}
 
-== Changing methods from a class methods with visitor ==
+== Changing methods from a class with a visitor ==
 
 {{{
 public class MethodChanger {
@@ -109,7 +109,7 @@ public class MethodChanger {
 }
 }}}
 
-== Changing methods from a class methods without visitor ==
+== Changing methods from a class without a visitor ==
 
 {{{
 public class MethodChanger {
