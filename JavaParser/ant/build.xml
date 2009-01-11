@@ -21,7 +21,7 @@
 	<taskdef classname="net.bluecow.googlecode.ant.GoogleCodeUploadTask" classpath="ant-googlecode-0.0.1.jar" name="gcupload" />
 	<property name="googlecode.user" value="jgesser" />
 	<!-- the file must have a property named "googlecode.password" -->
-	<property file="../JavaParser-ant/pass.txt" />
+	<property file="../../JavaParser-ant/pass.txt" />
 	<property name="googlecode.project" value="javaparser" />
 	<property name="googlecode.file.summary.src" value="Java1.5 parser and AST release ${version} (source)" />
 	<property name="googlecode.file.summary.bin" value="Java1.5 parser and AST release ${version} (binary)" />
@@ -71,7 +71,7 @@
 		<delete file="${bin.temp.jar}" failonerror="true" />
 	</target>
 
-	<target name="all">
+	<target name="all" description="default">
 		<antcall target="clean" />
 
 		<antcall target="build-src" />
