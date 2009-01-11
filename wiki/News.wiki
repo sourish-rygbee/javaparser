@@ -4,4 +4,4 @@
 
 == 2009/01/11 ==
 
-The source code now is available via SVN, check the [source/checkout source] tab for details.
+The source code now is available via SVN, check the [http://code.google.com/p/javaparser/source source] tab for details.
