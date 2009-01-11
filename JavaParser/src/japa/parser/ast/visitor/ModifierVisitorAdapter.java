@@ -383,9 +383,9 @@ public class ModifierVisitorAdapter<A> implements GenericVisitor<Node, A> {
     }
 
     public Node visit(DoStmt n, A arg) {
-        n.getBody().accept(this, arg);
-        n.getCondition().accept(this, arg);
-        return null;
+        n.setBody((Statement) n.getBody().accept(this, arg));
+        n.setCondition((Expression) n.getCondition().accept(this, arg));
+        return n;
     }
 
     public Node visit(DoubleLiteralExpr n, A arg) {
