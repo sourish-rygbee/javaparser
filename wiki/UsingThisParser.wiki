@@ -1,6 +1,8 @@
 #summary How to use this Java Parser
 #labels Featured
 
+<wiki:toc />
+
 = Sample Usage =
 
 If you have questions of how to use this parser, post a comment here, the answer can help other people.
