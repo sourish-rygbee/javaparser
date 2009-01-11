@@ -1,0 +1,7 @@
+#summary What's New
+
+= What's New =
+
+== 2009/01/11 ==
+
+The source code now is available via SVN, check the [source/checkout source] tab for details.
