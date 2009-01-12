@@ -1,6 +1,11 @@
 #summary History of Changes
 #labels Featured
 
+*1.0.6* (_2009-01-11_)
+  * Issue 11 fixed: changed method `get/setPakage` to `get/setPackage` in the class `CompilationUnit`
+  * Created new visitor adapter to help AST modification: `ModifierVisitorAdapter`
+  * Changed visitor adapters to `abstract`  
+
 *1.0.5* (_2008-10-26_)
   * Created simplified constructors in the nodes of the AST (without positional arguments) 
   * Created `ASTHelper` class with some helpful methods (more methods are still needed) (See UsingThisParser for an example)
