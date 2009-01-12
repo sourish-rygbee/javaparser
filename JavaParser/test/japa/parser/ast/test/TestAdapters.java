@@ -21,10 +21,14 @@
  */
 package japa.parser.ast.test;
 
+import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
 import japa.parser.ast.test.classes.DumperTestClass;
 import japa.parser.ast.test.classes.JavadocTestClass;
+import japa.parser.ast.visitor.GenericVisitor;
 import japa.parser.ast.visitor.GenericVisitorAdapter;
+import japa.parser.ast.visitor.ModifierVisitorAdapter;
+import japa.parser.ast.visitor.VoidVisitor;
 import japa.parser.ast.visitor.VoidVisitorAdapter;
 import junit.framework.TestCase;
 
@@ -33,20 +37,44 @@ import junit.framework.TestCase;
  */
 public class TestAdapters extends TestCase {
 
-    public void testVoidVisitorAdapter() throws Exception {
+    class ConcreteVoidVisitorAdapter extends VoidVisitorAdapter {
+
+    }
+
+    class ConcreteGenericVisitorAdapter extends GenericVisitorAdapter {
+
+    }
+
+    class ConcreteModifierVisitorAdapter extends ModifierVisitorAdapter {
+
+    }
+
+    private void doTest(VoidVisitor< ? > visitor) throws ParseException {
         CompilationUnit cu = TestHelper.parserClass("./test", DumperTestClass.class);
-        cu.accept(new VoidVisitorAdapter(), null);
+        cu.accept(visitor, null);
 
         cu = TestHelper.parserClass("./test", JavadocTestClass.class);
-        cu.accept(new VoidVisitorAdapter(), null);
+        cu.accept(visitor, null);
+    }
+
+    private void doTest(GenericVisitor< ? , ? > visitor) throws ParseException {
+        CompilationUnit cu = TestHelper.parserClass("./test", DumperTestClass.class);
+        cu.accept(visitor, null);
+
+        cu = TestHelper.parserClass("./test", JavadocTestClass.class);
+        cu.accept(visitor, null);
+    }
+
+    public void testVoidVisitorAdapter() throws Exception {
+        doTest(new ConcreteVoidVisitorAdapter());
     }
 
     public void testGenericVisitorAdapter() throws Exception {
-        CompilationUnit cu = TestHelper.parserClass("./test", DumperTestClass.class);
-        cu.accept(new GenericVisitorAdapter(), null);
+        doTest(new ConcreteGenericVisitorAdapter());
+    }
 
-        cu = TestHelper.parserClass("./test", JavadocTestClass.class);
-        cu.accept(new GenericVisitorAdapter(), null);
+    public void testModifierVisitorAdapter() throws Exception {
+        doTest(new ConcreteModifierVisitorAdapter());
     }
 
 }
