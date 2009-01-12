@@ -389,486 +389,548 @@ public class ModifierVisitorAdapter<A> implements GenericVisitor<Node, A> {
     }
 
     public Node visit(DoubleLiteralExpr n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(EmptyMemberDeclaration n, A arg) {
         if (n.getJavaDoc() != null) {
-            n.getJavaDoc().accept(this, arg);
+            n.setJavaDoc((JavadocComment) n.getJavaDoc().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(EmptyStmt n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(EmptyTypeDeclaration n, A arg) {
         if (n.getJavaDoc() != null) {
-            n.getJavaDoc().accept(this, arg);
+            n.setJavaDoc((JavadocComment) n.getJavaDoc().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(EnclosedExpr n, A arg) {
-        n.getInner().accept(this, arg);
-        return null;
+        n.setInner((Expression) n.getInner().accept(this, arg));
+        return n;
     }
 
     public Node visit(EnumConstantDeclaration n, A arg) {
         if (n.getJavaDoc() != null) {
-            n.getJavaDoc().accept(this, arg);
+            n.setJavaDoc((JavadocComment) n.getJavaDoc().accept(this, arg));
         }
-        if (n.getAnnotations() != null) {
-            for (AnnotationExpr a : n.getAnnotations()) {
-                a.accept(this, arg);
+        List<AnnotationExpr> annotations = n.getAnnotations();
+        if (annotations != null) {
+            for (int i = 0; i < annotations.size(); i++) {
+                annotations.set(i, (AnnotationExpr) annotations.get(i).accept(this, arg));
             }
+            removeNulls(annotations);
         }
-        if (n.getArgs() != null) {
-            for (Expression e : n.getArgs()) {
-                e.accept(this, arg);
+        List<Expression> args = n.getArgs();
+        if (args != null) {
+            for (int i = 0; i < args.size(); i++) {
+                args.set(i, (Expression) args.get(i).accept(this, arg));
             }
+            removeNulls(args);
         }
-        if (n.getClassBody() != null) {
-            for (BodyDeclaration member : n.getClassBody()) {
-                member.accept(this, arg);
+        List<BodyDeclaration> classBody = n.getClassBody();
+        if (classBody != null) {
+            for (int i = 0; i < classBody.size(); i++) {
+                classBody.set(i, (BodyDeclaration) classBody.get(i).accept(this, arg));
             }
+            removeNulls(classBody);
         }
-        return null;
+        return n;
     }
 
     public Node visit(EnumDeclaration n, A arg) {
         if (n.getJavaDoc() != null) {
-            n.getJavaDoc().accept(this, arg);
+            n.setJavaDoc((JavadocComment) n.getJavaDoc().accept(this, arg));
         }
-        if (n.getAnnotations() != null) {
-            for (AnnotationExpr a : n.getAnnotations()) {
-                a.accept(this, arg);
+        List<AnnotationExpr> annotations = n.getAnnotations();
+        if (annotations != null) {
+            for (int i = 0; i < annotations.size(); i++) {
+                annotations.set(i, (AnnotationExpr) annotations.get(i).accept(this, arg));
             }
+            removeNulls(annotations);
         }
-        if (n.getImplements() != null) {
-            for (ClassOrInterfaceType c : n.getImplements()) {
-                c.accept(this, arg);
+        List<ClassOrInterfaceType> implementz = n.getImplements();
+        if (implementz != null) {
+            for (int i = 0; i < implementz.size(); i++) {
+                implementz.set(i, (ClassOrInterfaceType) implementz.get(i).accept(this, arg));
             }
+            removeNulls(implementz);
         }
-        if (n.getEntries() != null) {
-            for (EnumConstantDeclaration e : n.getEntries()) {
-                e.accept(this, arg);
+        List<EnumConstantDeclaration> entries = n.getEntries();
+        if (entries != null) {
+            for (int i = 0; i < entries.size(); i++) {
+                entries.set(i, (EnumConstantDeclaration) entries.get(i).accept(this, arg));
             }
+            removeNulls(entries);
         }
-        if (n.getMembers() != null) {
-            for (BodyDeclaration member : n.getMembers()) {
-                member.accept(this, arg);
+        List<BodyDeclaration> members = n.getMembers();
+        if (members != null) {
+            for (int i = 0; i < members.size(); i++) {
+                members.set(i, (BodyDeclaration) members.get(i).accept(this, arg));
             }
+            removeNulls(members);
         }
-        return null;
+        return n;
     }
 
     public Node visit(ExplicitConstructorInvocationStmt n, A arg) {
         if (!n.isThis()) {
             if (n.getExpr() != null) {
-                n.getExpr().accept(this, arg);
+                n.setExpr((Expression) n.getExpr().accept(this, arg));
             }
         }
-        if (n.getTypeArgs() != null) {
-            for (Type t : n.getTypeArgs()) {
-                t.accept(this, arg);
+        List<Type> typeArgs = n.getTypeArgs();
+        if (typeArgs != null) {
+            for (int i = 0; i < typeArgs.size(); i++) {
+                typeArgs.set(i, (Type) typeArgs.get(i).accept(this, arg));
             }
+            removeNulls(typeArgs);
         }
-        if (n.getArgs() != null) {
-            for (Expression e : n.getArgs()) {
-                e.accept(this, arg);
+        List<Expression> args = n.getArgs();
+        if (args != null) {
+            for (int i = 0; i < args.size(); i++) {
+                args.set(i, (Expression) args.get(i).accept(this, arg));
             }
+            removeNulls(args);
         }
-        return null;
+        return n;
     }
 
     public Node visit(ExpressionStmt n, A arg) {
-        n.getExpression().accept(this, arg);
-        return null;
+        n.setExpression((Expression) n.getExpression().accept(this, arg));
+        return n;
     }
 
     public Node visit(FieldAccessExpr n, A arg) {
-        n.getScope().accept(this, arg);
-        return null;
+        n.setScope((Expression) n.getScope().accept(this, arg));
+        return n;
     }
 
     public Node visit(FieldDeclaration n, A arg) {
         if (n.getJavaDoc() != null) {
-            n.getJavaDoc().accept(this, arg);
+            n.setJavaDoc((JavadocComment) n.getJavaDoc().accept(this, arg));
         }
-        if (n.getAnnotations() != null) {
-            for (AnnotationExpr a : n.getAnnotations()) {
-                a.accept(this, arg);
+        List<AnnotationExpr> annotations = n.getAnnotations();
+        if (annotations != null) {
+            for (int i = 0; i < annotations.size(); i++) {
+                annotations.set(i, (AnnotationExpr) annotations.get(i).accept(this, arg));
             }
+            removeNulls(annotations);
         }
-        n.getType().accept(this, arg);
-        for (VariableDeclarator var : n.getVariables()) {
-            var.accept(this, arg);
+        n.setType((Type) n.getType().accept(this, arg));
+        List<VariableDeclarator> variables = n.getVariables();
+        for (int i = 0; i < variables.size(); i++) {
+            variables.set(i, (VariableDeclarator) variables.get(i).accept(this, arg));
         }
-        return null;
+        removeNulls(variables);
+        return n;
     }
 
     public Node visit(ForeachStmt n, A arg) {
-        n.getVariable().accept(this, arg);
-        n.getIterable().accept(this, arg);
-        n.getBody().accept(this, arg);
-        return null;
+        n.setVariable((VariableDeclarationExpr) n.getVariable().accept(this, arg));
+        n.setIterable((Expression) n.getIterable().accept(this, arg));
+        n.setBody((Statement) n.getBody().accept(this, arg));
+        return n;
     }
 
     public Node visit(ForStmt n, A arg) {
-        if (n.getInit() != null) {
-            for (Expression e : n.getInit()) {
-                e.accept(this, arg);
+        List<Expression> init = n.getInit();
+        if (init != null) {
+            for (int i = 0; i < init.size(); i++) {
+                init.set(i, (Expression) init.get(i).accept(this, arg));
             }
+            removeNulls(init);
         }
         if (n.getCompare() != null) {
-            n.getCompare().accept(this, arg);
+            n.setCompare((Expression) n.getCompare().accept(this, arg));
         }
-        if (n.getUpdate() != null) {
-            for (Expression e : n.getUpdate()) {
-                e.accept(this, arg);
+        List<Expression> update = n.getUpdate();
+        if (update != null) {
+            for (int i = 0; i < update.size(); i++) {
+                update.set(i, (Expression) update.get(i).accept(this, arg));
             }
+            removeNulls(update);
         }
-        n.getBody().accept(this, arg);
-        return null;
+        n.setBody((Statement) n.getBody().accept(this, arg));
+        return n;
     }
 
     public Node visit(IfStmt n, A arg) {
-        n.getCondition().accept(this, arg);
-        n.getThenStmt().accept(this, arg);
+        n.setCondition((Expression) n.getCondition().accept(this, arg));
+        n.setThenStmt((Statement) n.getThenStmt().accept(this, arg));
         if (n.getElseStmt() != null) {
-            n.getElseStmt().accept(this, arg);
+            n.setElseStmt((Statement) n.getElseStmt().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(ImportDeclaration n, A arg) {
-        n.getName().accept(this, arg);
-        return null;
+        n.setName((NameExpr) n.getName().accept(this, arg));
+        return n;
     }
 
     public Node visit(InitializerDeclaration n, A arg) {
         if (n.getJavaDoc() != null) {
-            n.getJavaDoc().accept(this, arg);
+            n.setJavaDoc((JavadocComment) n.getJavaDoc().accept(this, arg));
         }
-        n.getBlock().accept(this, arg);
-        return null;
+        n.setBlock((BlockStmt) n.getBlock().accept(this, arg));
+        return n;
     }
 
     public Node visit(InstanceOfExpr n, A arg) {
-        n.getExpr().accept(this, arg);
-        n.getType().accept(this, arg);
-        return null;
+        n.setExpr((Expression) n.getExpr().accept(this, arg));
+        n.setType((Type) n.getType().accept(this, arg));
+        return n;
     }
 
     public Node visit(IntegerLiteralExpr n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(IntegerLiteralMinValueExpr n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(JavadocComment n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(LabeledStmt n, A arg) {
-        n.getStmt().accept(this, arg);
-        return null;
+        n.setStmt((Statement) n.getStmt().accept(this, arg));
+        return n;
     }
 
     public Node visit(LongLiteralExpr n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(LongLiteralMinValueExpr n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(MarkerAnnotationExpr n, A arg) {
-        n.getName().accept(this, arg);
-        return null;
+        n.setName((NameExpr) n.getName().accept(this, arg));
+        return n;
     }
 
     public Node visit(MemberValuePair n, A arg) {
-        n.getValue().accept(this, arg);
-        return null;
+        n.setValue((Expression) n.getValue().accept(this, arg));
+        return n;
     }
 
     public Node visit(MethodCallExpr n, A arg) {
         if (n.getScope() != null) {
-            n.getScope().accept(this, arg);
+            n.setScope((Expression) n.getScope().accept(this, arg));
         }
-        if (n.getTypeArgs() != null) {
-            for (Type t : n.getTypeArgs()) {
-                t.accept(this, arg);
+        List<Type> typeArgs = n.getTypeArgs();
+        if (typeArgs != null) {
+            for (int i = 0; i < typeArgs.size(); i++) {
+                typeArgs.set(i, (Type) typeArgs.get(i).accept(this, arg));
             }
+            removeNulls(typeArgs);
         }
-        if (n.getArgs() != null) {
-            for (Expression e : n.getArgs()) {
-                e.accept(this, arg);
+        List<Expression> args = n.getArgs();
+        if (args != null) {
+            for (int i = 0; i < args.size(); i++) {
+                args.set(i, (Expression) args.get(i).accept(this, arg));
             }
+            removeNulls(args);
         }
-        return null;
+        return n;
     }
 
     public Node visit(MethodDeclaration n, A arg) {
         if (n.getJavaDoc() != null) {
-            n.getJavaDoc().accept(this, arg);
+            n.setJavaDoc((JavadocComment) n.getJavaDoc().accept(this, arg));
         }
-        if (n.getAnnotations() != null) {
-            for (AnnotationExpr a : n.getAnnotations()) {
-                a.accept(this, arg);
+        List<AnnotationExpr> annotations = n.getAnnotations();
+        if (annotations != null) {
+            for (int i = 0; i < annotations.size(); i++) {
+                annotations.set(i, (AnnotationExpr) annotations.get(i).accept(this, arg));
             }
+            removeNulls(annotations);
         }
-        if (n.getTypeParameters() != null) {
-            for (TypeParameter t : n.getTypeParameters()) {
-                t.accept(this, arg);
+        List<TypeParameter> typeParameters = n.getTypeParameters();
+        if (typeParameters != null) {
+            for (int i = 0; i < typeParameters.size(); i++) {
+                typeParameters.set(i, (TypeParameter) typeParameters.get(i).accept(this, arg));
             }
+            removeNulls(typeParameters);
         }
-        n.getType().accept(this, arg);
-        if (n.getParameters() != null) {
-            for (Parameter p : n.getParameters()) {
-                p.accept(this, arg);
+        n.setType((Type) n.getType().accept(this, arg));
+        List<Parameter> parameters = n.getParameters();
+        if (parameters != null) {
+            for (int i = 0; i < parameters.size(); i++) {
+                parameters.set(i, (Parameter) parameters.get(i).accept(this, arg));
             }
+            removeNulls(parameters);
         }
-        if (n.getThrows() != null) {
-            for (NameExpr name : n.getThrows()) {
-                name.accept(this, arg);
+        List<NameExpr> throwz = n.getThrows();
+        if (throwz != null) {
+            for (int i = 0; i < throwz.size(); i++) {
+                throwz.set(i, (NameExpr) throwz.get(i).accept(this, arg));
             }
+            removeNulls(throwz);
         }
         if (n.getBody() != null) {
-            n.getBody().accept(this, arg);
+            n.setBody((BlockStmt) n.getBody().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(NameExpr n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(NormalAnnotationExpr n, A arg) {
-        n.getName().accept(this, arg);
-        if (n.getPairs() != null) {
-            for (MemberValuePair m : n.getPairs()) {
-                m.accept(this, arg);
+        n.setName((NameExpr) n.getName().accept(this, arg));
+        List<MemberValuePair> pairs = n.getPairs();
+        if (pairs != null) {
+            for (int i = 0; i < pairs.size(); i++) {
+                pairs.set(i, (MemberValuePair) pairs.get(i).accept(this, arg));
             }
+            removeNulls(pairs);
         }
-        return null;
+        return n;
     }
 
     public Node visit(NullLiteralExpr n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(ObjectCreationExpr n, A arg) {
         if (n.getScope() != null) {
-            n.getScope().accept(this, arg);
+            n.setScope((Expression) n.getScope().accept(this, arg));
         }
-        if (n.getTypeArgs() != null) {
-            for (Type t : n.getTypeArgs()) {
-                t.accept(this, arg);
+        List<Type> typeArgs = n.getTypeArgs();
+        if (typeArgs != null) {
+            for (int i = 0; i < typeArgs.size(); i++) {
+                typeArgs.set(i, (Type) typeArgs.get(i).accept(this, arg));
             }
+            removeNulls(typeArgs);
         }
-        n.getType().accept(this, arg);
-        if (n.getArgs() != null) {
-            for (Expression e : n.getArgs()) {
-                e.accept(this, arg);
+        n.setType((ClassOrInterfaceType) n.getType().accept(this, arg));
+        List<Expression> args = n.getArgs();
+        if (args != null) {
+            for (int i = 0; i < args.size(); i++) {
+                args.set(i, (Expression) args.get(i).accept(this, arg));
             }
+            removeNulls(args);
         }
-        if (n.getAnonymousClassBody() != null) {
-            for (BodyDeclaration member : n.getAnonymousClassBody()) {
-                member.accept(this, arg);
+        List<BodyDeclaration> anonymousClassBody = n.getAnonymousClassBody();
+        if (anonymousClassBody != null) {
+            for (int i = 0; i < anonymousClassBody.size(); i++) {
+                anonymousClassBody.set(i, (BodyDeclaration) anonymousClassBody.get(i).accept(this, arg));
             }
+            removeNulls(anonymousClassBody);
         }
-        return null;
+        return n;
     }
 
     public Node visit(PackageDeclaration n, A arg) {
-        if (n.getAnnotations() != null) {
-            for (AnnotationExpr a : n.getAnnotations()) {
-                a.accept(this, arg);
+        List<AnnotationExpr> annotations = n.getAnnotations();
+        if (annotations != null) {
+            for (int i = 0; i < annotations.size(); i++) {
+                annotations.set(i, (AnnotationExpr) annotations.get(i).accept(this, arg));
             }
+            removeNulls(annotations);
         }
-        n.getName().accept(this, arg);
-        return null;
+        n.setName((NameExpr) n.getName().accept(this, arg));
+        return n;
     }
 
     public Node visit(Parameter n, A arg) {
-        if (n.getAnnotations() != null) {
-            for (AnnotationExpr a : n.getAnnotations()) {
-                a.accept(this, arg);
+        List<AnnotationExpr> annotations = n.getAnnotations();
+        if (annotations != null) {
+            for (int i = 0; i < annotations.size(); i++) {
+                annotations.set(i, (AnnotationExpr) annotations.get(i).accept(this, arg));
             }
+            removeNulls(annotations);
         }
-        n.getType().accept(this, arg);
-        n.getId().accept(this, arg);
-        return null;
+        n.setType((Type) n.getType().accept(this, arg));
+        n.setId((VariableDeclaratorId) n.getId().accept(this, arg));
+        return n;
     }
 
     public Node visit(PrimitiveType n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(QualifiedNameExpr n, A arg) {
-        n.getQualifier().accept(this, arg);
-        return null;
+        n.setQualifier((NameExpr) n.getQualifier().accept(this, arg));
+        return n;
     }
 
     public Node visit(ReferenceType n, A arg) {
-        n.getType().accept(this, arg);
-        return null;
+        n.setType((Type) n.getType().accept(this, arg));
+        return n;
     }
 
     public Node visit(ReturnStmt n, A arg) {
         if (n.getExpr() != null) {
-            n.getExpr().accept(this, arg);
+            n.setExpr((Expression) n.getExpr().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(SingleMemberAnnotationExpr n, A arg) {
-        n.getName().accept(this, arg);
-        n.getMemberValue().accept(this, arg);
-        return null;
+        n.setName((NameExpr) n.getName().accept(this, arg));
+        n.setMemberValue((Expression) n.getMemberValue().accept(this, arg));
+        return n;
     }
 
     public Node visit(StringLiteralExpr n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(SuperExpr n, A arg) {
         if (n.getClassExpr() != null) {
-            n.getClassExpr().accept(this, arg);
+            n.setClassExpr((Expression) n.getClassExpr().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(SwitchEntryStmt n, A arg) {
         if (n.getLabel() != null) {
-            n.getLabel().accept(this, arg);
+            n.setLabel((Expression) n.getLabel().accept(this, arg));
         }
-        if (n.getStmts() != null) {
-            for (Statement s : n.getStmts()) {
-                s.accept(this, arg);
+        List<Statement> stmts = n.getStmts();
+        if (stmts != null) {
+            for (int i = 0; i < stmts.size(); i++) {
+                stmts.set(i, (Statement) stmts.get(i).accept(this, arg));
             }
+            removeNulls(stmts);
         }
-        return null;
+        return n;
     }
 
     public Node visit(SwitchStmt n, A arg) {
-        n.getSelector().accept(this, arg);
-        if (n.getEntries() != null) {
-            for (SwitchEntryStmt e : n.getEntries()) {
-                e.accept(this, arg);
+        n.setSelector((Expression) n.getSelector().accept(this, arg));
+        List<SwitchEntryStmt> entries = n.getEntries();
+        if (entries != null) {
+            for (int i = 0; i < entries.size(); i++) {
+                entries.set(i, (SwitchEntryStmt) entries.get(i).accept(this, arg));
             }
+            removeNulls(entries);
         }
-        return null;
+        return n;
 
     }
 
     public Node visit(SynchronizedStmt n, A arg) {
-        n.getExpr().accept(this, arg);
-        n.getBlock().accept(this, arg);
-        return null;
+        n.setExpr((Expression) n.getExpr().accept(this, arg));
+        n.setBlock((BlockStmt) n.getBlock().accept(this, arg));
+        return n;
     }
 
     public Node visit(ThisExpr n, A arg) {
         if (n.getClassExpr() != null) {
-            n.getClassExpr().accept(this, arg);
+            n.setClassExpr((Expression) n.getClassExpr().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(ThrowStmt n, A arg) {
-        n.getExpr().accept(this, arg);
-        return null;
+        n.setExpr((Expression) n.getExpr().accept(this, arg));
+        return n;
     }
 
     public Node visit(TryStmt n, A arg) {
-        n.getTryBlock().accept(this, arg);
-        if (n.getCatchs() != null) {
-            for (CatchClause c : n.getCatchs()) {
-                c.accept(this, arg);
+        n.setTryBlock((BlockStmt) n.getTryBlock().accept(this, arg));
+        List<CatchClause> catchs = n.getCatchs();
+        if (catchs != null) {
+            for (int i = 0; i < catchs.size(); i++) {
+                catchs.set(i, (CatchClause) catchs.get(i).accept(this, arg));
             }
+            removeNulls(catchs);
         }
         if (n.getFinallyBlock() != null) {
-            n.getFinallyBlock().accept(this, arg);
+            n.setFinallyBlock((BlockStmt) n.getFinallyBlock().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(TypeDeclarationStmt n, A arg) {
-        n.getTypeDeclaration().accept(this, arg);
-        return null;
+        n.setTypeDeclaration((TypeDeclaration) n.getTypeDeclaration().accept(this, arg));
+        return n;
     }
 
     public Node visit(TypeParameter n, A arg) {
-        if (n.getTypeBound() != null) {
-            for (ClassOrInterfaceType c : n.getTypeBound()) {
-                c.accept(this, arg);
+        List<ClassOrInterfaceType> typeBound = n.getTypeBound();
+        if (typeBound != null) {
+            for (int i = 0; i < typeBound.size(); i++) {
+                typeBound.set(i, (ClassOrInterfaceType) typeBound.get(i).accept(this, arg));
             }
+            removeNulls(typeBound);
         }
-        return null;
+        return n;
     }
 
     public Node visit(UnaryExpr n, A arg) {
-        n.getExpr().accept(this, arg);
-        return null;
+        n.setExpr((Expression) n.getExpr().accept(this, arg));
+        return n;
     }
 
     public Node visit(VariableDeclarationExpr n, A arg) {
-        if (n.getAnnotations() != null) {
-            for (AnnotationExpr a : n.getAnnotations()) {
-                a.accept(this, arg);
+        List<AnnotationExpr> annotations = n.getAnnotations();
+        if (annotations != null) {
+            for (int i = 0; i < annotations.size(); i++) {
+                annotations.set(i, (AnnotationExpr) annotations.get(i).accept(this, arg));
             }
+            removeNulls(annotations);
         }
-        n.getType().accept(this, arg);
-        for (VariableDeclarator v : n.getVars()) {
-            v.accept(this, arg);
+        n.setType((Type) n.getType().accept(this, arg));
+        List<VariableDeclarator> vars = n.getVars();
+        for (int i = 0; i < vars.size(); i++) {
+            vars.set(i, (VariableDeclarator) vars.get(i).accept(this, arg));
         }
-        return null;
+        removeNulls(vars);
+        return n;
     }
 
     public Node visit(VariableDeclarator n, A arg) {
-        n.getId().accept(this, arg);
+        n.setId((VariableDeclaratorId) n.getId().accept(this, arg));
         if (n.getInit() != null) {
-            n.getInit().accept(this, arg);
+            n.setInit((Expression) n.getInit().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(VariableDeclaratorId n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(VoidType n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(WhileStmt n, A arg) {
-        n.getCondition().accept(this, arg);
-        n.getBody().accept(this, arg);
-        return null;
+        n.setCondition((Expression) n.getCondition().accept(this, arg));
+        n.setBody((Statement) n.getBody().accept(this, arg));
+        return n;
     }
 
     public Node visit(WildcardType n, A arg) {
         if (n.getExtends() != null) {
-            n.getExtends().accept(this, arg);
+            n.setExtends((ReferenceType) n.getExtends().accept(this, arg));
         }
         if (n.getSuper() != null) {
-            n.getSuper().accept(this, arg);
+            n.setSuper((ReferenceType) n.getSuper().accept(this, arg));
         }
-        return null;
+        return n;
     }
 
     public Node visit(BlockComment n, A arg) {
-        return null;
+        return n;
     }
 
     public Node visit(LineComment n, A arg) {
-        return null;
+        return n;
     }
 
 }
