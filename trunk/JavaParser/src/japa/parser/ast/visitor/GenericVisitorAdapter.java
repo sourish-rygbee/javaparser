@@ -110,7 +110,7 @@ import japa.parser.ast.type.WildcardType;
 /**
  * @author Julio Vilmar Gesser
  */
-public class GenericVisitorAdapter<R, A> implements GenericVisitor<R, A> {
+public abstract class GenericVisitorAdapter<R, A> implements GenericVisitor<R, A> {
 
     public R visit(AnnotationDeclaration n, A arg) {
         if (n.getJavaDoc() != null) {

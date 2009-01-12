@@ -32,8 +32,10 @@ bugs and feature enhacement and download the latest version:
 Version history
 ---------------
 
-1.0.6 (2008-??-??)
-- Issue 11 fixed: changed method get/setPakage to get/setPackage in the class CompilationUnit  
+1.0.6 (2009-01-11)
+- Issue 11 fixed: changed method get/setPakage to get/setPackage in the class CompilationUnit
+- Created new visitor adapter to help AST modification: ModifierVisitorAdapter
+- Changed visitor adapters to abstract  
 
 1.0.5 (2008-10-26)
 - Created simplified constructors in the nodes of the AST (without positional arguments) 

@@ -110,7 +110,7 @@ import japa.parser.ast.type.WildcardType;
 /**
  * @author Julio Vilmar Gesser
  */
-public class VoidVisitorAdapter<A> implements VoidVisitor<A> {
+public abstract class VoidVisitorAdapter<A> implements VoidVisitor<A> {
 
     public void visit(AnnotationDeclaration n, A arg) {
         if (n.getJavaDoc() != null) {
