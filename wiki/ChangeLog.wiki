@@ -1,6 +1,10 @@
 #summary History of Changes
 #labels Featured
 
+*1.0.7* (_2009-04-12_)
+  * Issue 19 fixed:
+  * Tests changed to run with junit 4 
+
 *1.0.6* (_2009-01-11_)
   * Issue 11 fixed: changed method `get/setPakage` to `get/setPackage` in the class `CompilationUnit`
   * Created new visitor adapter to help AST modification: `ModifierVisitorAdapter`
