@@ -15,7 +15,7 @@
   * Created `ASTHelper` class with some helpful methods (more methods are still needed) (See UsingThisParser for an example)
 
 *1.0.4* (_2008-10-07_)
-  * Moved to javacc 4.1. ([http://code.google.com/p/javaparser/issues/detail?id=10 Issue 10])
+  * Moved to javacc 4.1. (Issue 10)
   * The java_1_5.jj can be build alone without compilation errors
 
 *1.0.3* (_2008-09-06_)
@@ -25,10 +25,10 @@
   * The methods `get/setAnnotations()` from all `BodyDeclaration` subclasses were pushed down to `BodyDeclaration` class
 
 *1.0.2* (_2008-07-20_)
-  * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=1 Issue 1]: Add support for editing AST nodes or create new ones
+  * Issue fixed: Issue 1: Add support for editing AST nodes or create new ones
 
 *1.0.1* (_2008-07-01_)
-  * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=5 Issue 5]: end line and end column equal to begin line and begin column
+  * Issue fixed: Issue 5: end line and end column equal to begin line and begin column
 
 *1.0.0* (_2008-06-25_)
   * Changed version numbering, starting version 1.0.0
@@ -42,7 +42,7 @@
   * No code changes, added binary distribution to download page
 
 *2008-06-11*
-  * Issue fixed: [http://code.google.com/p/javaparser/issues/detail?id=2 Issue 2]: NPE in `VoidVisitorAdapter`
+  * Issue fixed: Issue 2: NPE in `VoidVisitorAdapter`
 
 *2008-06-09*
   * Added Adapters for de visitors
