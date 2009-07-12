@@ -31,10 +31,12 @@
 	<target name="build-src">
 		<zip destfile="${src.temp.file}" level="9">
 			<fileset dir="${source.dir}">
-				<exclude name=".*" />
-				<exclude name="bin/**" />
-				<exclude name="ant/**" />
 				<exclude name="test/ignore/**" />
+				<include name="src/**"/>
+				<include name="test/**"/>
+				<include name="COPYING" />
+				<include name="COPYING.LESSER" />
+				<include name="readme.txt" />
 			</fileset>
 		</zip>
 	</target>
@@ -42,8 +44,8 @@
 	<target name="build-bin">
 		<jar destfile="${bin.temp.jar}">
 			<fileset dir="${source.dir}/bin">
-				<exclude name="TestRunner*.class" />
-				<exclude name="**/test/**/*" />
+				<exclude name="ignore/**" />
+				<exclude name="**/test/**" />
 			</fileset>
 		</jar>
 
