@@ -50,7 +50,7 @@ public final class ModifierSet {
      * Adds the given modifier.
      */
     public static int addModifier(int modifiers, int mod) {
-        return modifiers |= mod;
+        return modifiers | mod;
     }
 
     public static boolean hasModifier(int modifiers, int modifier) {
@@ -110,7 +110,7 @@ public final class ModifierSet {
      * Removes the given modifier.
      */
     public static int removeModifier(int modifiers, int mod) {
-        return modifiers &= ~mod;
+        return modifiers & ~mod;
     }
 
     private ModifierSet() {

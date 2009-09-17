@@ -38,15 +38,15 @@ import org.junit.Test;
  */
 public class TestAdapters {
 
-    class ConcreteVoidVisitorAdapter extends VoidVisitorAdapter {
+    static class ConcreteVoidVisitorAdapter extends VoidVisitorAdapter {
 
     }
 
-    class ConcreteGenericVisitorAdapter extends GenericVisitorAdapter {
+    static class ConcreteGenericVisitorAdapter extends GenericVisitorAdapter {
 
     }
 
-    class ConcreteModifierVisitorAdapter extends ModifierVisitorAdapter {
+    static class ConcreteModifierVisitorAdapter extends ModifierVisitorAdapter {
 
     }
 
