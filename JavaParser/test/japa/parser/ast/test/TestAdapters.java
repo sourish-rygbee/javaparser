@@ -51,18 +51,18 @@ public class TestAdapters {
     }
 
     private void doTest(VoidVisitor< ? > visitor) throws ParseException {
-        CompilationUnit cu = TestHelper.parserClass("./test", DumperTestClass.class);
+        CompilationUnit cu = Helper.parserClass("./test", DumperTestClass.class);
         cu.accept(visitor, null);
 
-        cu = TestHelper.parserClass("./test", JavadocTestClass.class);
+        cu = Helper.parserClass("./test", JavadocTestClass.class);
         cu.accept(visitor, null);
     }
 
     private void doTest(GenericVisitor< ? , ? > visitor) throws ParseException {
-        CompilationUnit cu = TestHelper.parserClass("./test", DumperTestClass.class);
+        CompilationUnit cu = Helper.parserClass("./test", DumperTestClass.class);
         cu.accept(visitor, null);
 
-        cu = TestHelper.parserClass("./test", JavadocTestClass.class);
+        cu = Helper.parserClass("./test", JavadocTestClass.class);
         cu.accept(visitor, null);
     }
 

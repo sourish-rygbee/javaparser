@@ -28,6 +28,8 @@ public class DumperTestClass<T extends List<int[]>, X> extends Base implements S
     int[] arr = new int[10];
 
     byte bye = 0;
+    
+    byte byebye[] = null;
 
     short sh1, sh2 = 1;
 
