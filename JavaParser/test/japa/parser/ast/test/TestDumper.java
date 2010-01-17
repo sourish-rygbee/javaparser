@@ -33,6 +33,7 @@ import org.junit.Test;
  */
 public class TestDumper {
 
+    @Test
     public void testDumpVisitor() throws Exception {
         String source = Helper.readClass("./test", DumperTestClass.class);
         CompilationUnit cu = Helper.parserString(source);
