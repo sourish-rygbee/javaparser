@@ -32,8 +32,8 @@
 		<zip destfile="${src.temp.file}" level="9">
 			<fileset dir="${source.dir}">
 				<exclude name="test/ignore/**" />
-				<include name="src/**"/>
-				<include name="test/**"/>
+				<include name="src/**" />
+				<include name="test/**" />
 				<include name="COPYING" />
 				<include name="COPYING.LESSER" />
 				<include name="readme.txt" />
