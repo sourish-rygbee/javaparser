@@ -1,7 +1,0 @@
-#summary Help this project, your donation will be very useful.
-
-|| *$ US DOLLAR* || *€ EURO* ||
-||[https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=953069 http://www.paypal.com/en_GB/i/btn/btn_donate_SM.gif] $2.00||[https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=953121 http://www.paypal.com/en_GB/i/btn/btn_donate_SM.gif] €2.00||
-||[https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=207289 http://www.paypal.com/en_GB/i/btn/btn_donate_SM.gif] free amount||[https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=207521 http://www.paypal.com/en_GB/i/btn/btn_donate_SM.gif] free amount||
-
-Thanks to everyone who donated!
