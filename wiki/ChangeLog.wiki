@@ -1,6 +1,14 @@
 #summary History of Changes
 #labels Featured
 
+*1.0.8* (_2010-01-17_)
+  * Fixed issues:
+    * Issue 17: A refactor suggestion for AnnotationExpr and its subclasses
+    * Issue 21: Java 5 JavaParser compiled JARs
+    * Issue 22: Please use java.lang.reflect.Modifier constants in japa.parser.ast.body.ModifierSet
+    * Issue 27: Implement the "equal" method
+    * Issue 30: equals and hashCode methods
+	
 *1.0.7* (_2009-04-12_)
   * Issue 19 fixed:
   * Tests changed to run with junit 4 
