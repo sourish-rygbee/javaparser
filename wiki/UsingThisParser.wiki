@@ -211,3 +211,28 @@ public class ClassCreator {
     }
 }
 }}}
+
+= Maven Artifact =
+
+To use JavaParser from a Maven project, add this repository to your project POM:
+
+{{{
+<repository>
+    <id>javaparser</id>
+    <url>javaparser repository</url>
+    <url>http://javaparser.googlecode.com/svn/maven2</url>
+    <snapshots>
+        <enabled>false</enabled>
+    </snapshots>
+</repository>
+}}}
+
+Add the dependency as follows:
+
+{{{
+<dependency>
+    <groupId>japa.javaparser</groupId>
+    <artifactId>javaparser</artifactId>
+    <version>1.0.8</version>
+</dependency>
+}}}
