@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Júlio Vilmar Gesser.
+ * Copyright (C) 2010 Jï¿½lio Vilmar Gesser.
  * 
  * This file is part of Java 1.5 parser and Abstract Syntax Tree.
  *
@@ -52,7 +52,7 @@ public class TestHashCodeEquals {
 
     @Test
     public void tesCompilationUnitEqual() throws Exception {
-        String source = Helper.readClass("./test", DumperTestClass.class);
+        String source = Helper.readClass("./src/test/java", DumperTestClass.class);
         CompilationUnit cu1 = Helper.parserString(source);
         CompilationUnit cu2 = Helper.parserString(source);
         assertEqualsAndHashCode(cu1, cu2);
@@ -60,7 +60,7 @@ public class TestHashCodeEquals {
 
     @Test
     public void tesCompilationUnitNotEqual() throws Exception {
-        String source = Helper.readClass("./test", DumperTestClass.class);
+        String source = Helper.readClass("./src/test/java", DumperTestClass.class);
         CompilationUnit cu1 = Helper.parserString(source);
         CompilationUnit cu2 = Helper.parserString(source);
 
@@ -85,7 +85,7 @@ public class TestHashCodeEquals {
 
     @Test
     public void testJavadoc() throws Exception {
-        String source = Helper.readClass("./test", JavadocTestClass.class);
+        String source = Helper.readClass("./src/test/java", JavadocTestClass.class);
         CompilationUnit cu1 = Helper.parserString(source);
         CompilationUnit cu2 = Helper.parserString(source);
         assertEqualsAndHashCode(cu1, cu2);
