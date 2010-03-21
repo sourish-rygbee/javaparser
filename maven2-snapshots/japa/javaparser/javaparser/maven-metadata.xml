@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>japa.javaparser</groupId>
+  <artifactId>javaparser</artifactId>
+  <version>1.0.9-SNAPSHOT</version>
+  <versioning>
+    <versions>
+      <version>1.0.9-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20100321210700</lastUpdated>
+  </versioning>
+</metadata>
