@@ -345,6 +345,13 @@ public class DumperTestClass<T extends List<int[]>, X> extends Base implements S
         };
     }
 
+    public @interface AnnotationTest2 {
+
+        int[] valueI() default { 1, 2 };
+
+        String value() default "asd";
+    }
+
     @Documented
     public @interface AnnotationTest {
 
@@ -353,11 +360,11 @@ public class DumperTestClass<T extends List<int[]>, X> extends Base implements S
         @Deprecated
         int[] valueI() default { 1, 2 };
 
-        AnnotationTest valueA1() default @AnnotationTest;
+        AnnotationTest2 valueA1() default @AnnotationTest2;
 
-        AnnotationTest valueA2() default @AnnotationTest("qwe");
+        AnnotationTest2 valueA2() default @AnnotationTest2("qwe");
 
-        AnnotationTest valueA3() default @AnnotationTest(value = "qwe", valueI = { 1 });
+        AnnotationTest2 valueA3() default @AnnotationTest2(value = "qwe", valueI = { 1 });
     }
 
     ;
