@@ -26,8 +26,6 @@ import static org.junit.Assert.assertFalse;
 import japa.parser.ast.CompilationUnit;
 import japa.parser.ast.PackageDeclaration;
 import japa.parser.ast.expr.NameExpr;
-import japa.parser.ast.test.classes.DumperTestClass;
-import japa.parser.ast.test.classes.JavadocTestClass;
 
 import org.junit.Test;
 
@@ -52,7 +50,7 @@ public class TestHashCodeEquals {
 
     @Test
     public void tesCompilationUnitEqual() throws Exception {
-        String source = Helper.readClass("./test", DumperTestClass.class);
+        String source = Helper.readClass("DumperTestClass");
         CompilationUnit cu1 = Helper.parserString(source);
         CompilationUnit cu2 = Helper.parserString(source);
         assertEqualsAndHashCode(cu1, cu2);
@@ -60,7 +58,7 @@ public class TestHashCodeEquals {
 
     @Test
     public void tesCompilationUnitNotEqual() throws Exception {
-        String source = Helper.readClass("./test", DumperTestClass.class);
+        String source = Helper.readClass("DumperTestClass");
         CompilationUnit cu1 = Helper.parserString(source);
         CompilationUnit cu2 = Helper.parserString(source);
 
@@ -85,7 +83,7 @@ public class TestHashCodeEquals {
 
     @Test
     public void testJavadoc() throws Exception {
-        String source = Helper.readClass("./test", JavadocTestClass.class);
+        String source = Helper.readClass("JavadocTestClass");
         CompilationUnit cu1 = Helper.parserString(source);
         CompilationUnit cu2 = Helper.parserString(source);
         assertEqualsAndHashCode(cu1, cu2);

@@ -23,8 +23,6 @@ package japa.parser.ast.test;
 
 import static org.junit.Assert.assertEquals;
 import japa.parser.ast.CompilationUnit;
-import japa.parser.ast.test.classes.DumperTestClass;
-import japa.parser.ast.test.classes.JavadocTestClass;
 
 import org.junit.Test;
 
@@ -35,14 +33,14 @@ public class TestDumper {
 
     @Test
     public void testDumpVisitor() throws Exception {
-        String source = Helper.readClass("./test", DumperTestClass.class);
+        String source = Helper.readClass("DumperTestClass");
         CompilationUnit cu = Helper.parserString(source);
         assertEquals(source, cu.toString());
     }
 
     @Test
     public void testJavadoc() throws Exception {
-        String source = Helper.readClass("./test", JavadocTestClass.class);
+        String source = Helper.readClass("JavadocTestClass");
         CompilationUnit cu = Helper.parserString(source);
         assertEquals(source, cu.toString());
         assertEquals(19, cu.getComments().size());
