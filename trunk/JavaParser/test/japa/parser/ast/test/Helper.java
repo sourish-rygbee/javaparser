@@ -41,13 +41,13 @@ final class Helper {
         // hide the constructor
     }
 
-    private static File getFile(String sourceFolder, Class< ? > clazz) {
-        return new File(sourceFolder, clazz.getName().replace('.', '/') + ".java");
+    private static File getFile(String clazz) {
+        return new File("./test-classes", clazz + ".java");
     }
 
-    public static CompilationUnit parserClass(String sourceFolder, Class< ? > clazz) throws ParseException {
+    public static CompilationUnit parserClass(String clazz) throws ParseException {
         try {
-            return JavaParser.parse(getFile(sourceFolder, clazz));
+            return JavaParser.parse(getFile(clazz));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -72,8 +72,8 @@ final class Helper {
         }
     }
 
-    public static String readClass(String sourceFolder, Class< ? > clazz) throws IOException {
-        return readFile(getFile(sourceFolder, clazz));
+    public static String readClass(String clazz) throws IOException {
+        return readFile(getFile(clazz));
     }
 
 }

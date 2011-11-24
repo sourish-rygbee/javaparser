@@ -23,8 +23,6 @@ package japa.parser.ast.test;
 
 import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
-import japa.parser.ast.test.classes.DumperTestClass;
-import japa.parser.ast.test.classes.JavadocTestClass;
 import japa.parser.ast.visitor.GenericVisitor;
 import japa.parser.ast.visitor.GenericVisitorAdapter;
 import japa.parser.ast.visitor.ModifierVisitorAdapter;
@@ -38,31 +36,31 @@ import org.junit.Test;
  */
 public class TestAdapters {
 
-    static class ConcreteVoidVisitorAdapter extends VoidVisitorAdapter {
+    static class ConcreteVoidVisitorAdapter extends VoidVisitorAdapter<Object> {
 
     }
 
-    static class ConcreteGenericVisitorAdapter extends GenericVisitorAdapter {
+    static class ConcreteGenericVisitorAdapter extends GenericVisitorAdapter<Object, Object> {
 
     }
 
-    static class ConcreteModifierVisitorAdapter extends ModifierVisitorAdapter {
+    static class ConcreteModifierVisitorAdapter extends ModifierVisitorAdapter<Object> {
 
     }
 
-    private void doTest(VoidVisitor< ? > visitor) throws ParseException {
-        CompilationUnit cu = Helper.parserClass("./test", DumperTestClass.class);
+    private void doTest(VoidVisitor<?> visitor) throws ParseException {
+        CompilationUnit cu = Helper.parserClass("DumperTestClass");
         cu.accept(visitor, null);
 
-        cu = Helper.parserClass("./test", JavadocTestClass.class);
+        cu = Helper.parserClass("JavadocTestClass");
         cu.accept(visitor, null);
     }
 
-    private void doTest(GenericVisitor< ? , ? > visitor) throws ParseException {
-        CompilationUnit cu = Helper.parserClass("./test", DumperTestClass.class);
+    private void doTest(GenericVisitor<?, ?> visitor) throws ParseException {
+        CompilationUnit cu = Helper.parserClass("DumperTestClass");
         cu.accept(visitor, null);
 
-        cu = Helper.parserClass("./test", JavadocTestClass.class);
+        cu = Helper.parserClass("JavadocTestClass");
         cu.accept(visitor, null);
     }
 
