@@ -70,7 +70,7 @@
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
 		<outputDirectory>bin</outputDirectory>
-		<testOutputDirectory>bin</testOutputDirectory>
+		<testOutputDirectory>bin-test</testOutputDirectory>
 		<extensions>
 			<extension>
 				<groupId>org.jvnet.wagon-svn</groupId>
