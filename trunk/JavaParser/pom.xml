@@ -46,6 +46,7 @@
 			<organizationUrl>http://www.Soluvas.com/</organizationUrl>
 		</contributor>
 	</contributors>
+	<!--
 	<distributionManagement>
 		<site>
 			<id>javaparser-site</id>
@@ -64,6 +65,7 @@
 			<url>svn:https://javaparser.googlecode.com/svn/maven2-snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
+	-->
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
