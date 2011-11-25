@@ -212,22 +212,9 @@ public class ClassCreator {
 }
 }}}
 
-= Maven Artifact =
+= Maven =
 
-To use !JavaParser from a Maven project, add this repository to your project POM:
-
-{{{
-<repository>
-    <id>javaparser</id>
-    <name>JavaParser Repository</name>
-    <url>http://javaparser.googlecode.com/svn/maven2</url>
-    <snapshots>
-        <enabled>false</enabled>
-    </snapshots>
-</repository>
-}}}
-
-Add the dependency as follows:
+To use !JavaParser from a Maven project, add the dependency as follows:
 
 {{{
 <dependency>
