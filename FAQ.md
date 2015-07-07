@@ -1,0 +1,2 @@
+  1. Methods who return lists will always return `null` if there is no element in the list?
+Yes, the JavaParser don't initialize empty lists. It will be needed to check if it is `null` when accessing the getter. To initialize a list is necessary to call the setter method with a instance of a  List.
